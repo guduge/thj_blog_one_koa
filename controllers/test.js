@@ -2,8 +2,8 @@
 const test = {}
 
 test.test = async (ctx, next) => {
-  ctx.result = "张楠哥哥你好"
-  ctx.msg = '👋'
+  ctx.result = ''
+  ctx.msg = '张楠哥哥你好'
   return next()
 }
 
