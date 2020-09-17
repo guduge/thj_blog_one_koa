@@ -28,7 +28,7 @@ app.use(koaBody(
     {
         multipart:true,
         formidable:{
-            maxFileSize: 10*1024*1024*1024 //大小限制
+            maxFileSize: 1000*1024*1024*1024 //大小限制
         }
     }
 ))
