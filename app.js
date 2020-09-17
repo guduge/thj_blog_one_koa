@@ -1,7 +1,8 @@
 'use strict'
 
 const Koa = require('koa')
-const bodyParser = require('koa-bodyparser')()
+// const bodyParser = require('koa-bodyparser')()
+const koaBody = require('koa-body');
 const staticCache = require('koa-static-cache')
 const cors = require('koa2-cors')
 const helmet = require("koa-helmet")
@@ -22,7 +23,15 @@ app.use(loggerMiddleware)
 app.use(errorHandler)
 
 // Global Middlewares
-app.use(bodyParser)
+// app.use(bodyParser)
+app.use(koaBody(
+    {
+        multipart:true,
+        formidable:{
+            maxFileSize: 10*1024*1024*1024 //大小限制
+        }
+    }
+))
 app.use(staticCache(config.publicDir))
 
 // Helmet
