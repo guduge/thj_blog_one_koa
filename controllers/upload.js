@@ -2,9 +2,6 @@
 
 const config = require('../config')
 const OSS = require('ali-oss');
-const co = require('co');
-const formidable = require("formidable");
-
 const client = new OSS({
     region: 'oss-cn-beijing',
     accessKeyId: 'LTAI4GC4MGQPFN1DpLEiaqYj',

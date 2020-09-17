@@ -15,8 +15,6 @@
   "license": "ISC",
   "dependencies": {
     "ali-oss": "^6.10.0",
-    "co": "^4.6.0",
-    "formidable": "^1.2.2",
     "jsonwebtoken": "^8.5.1",
     "koa": "^2.11.0",
     "koa-body": "^4.2.0",
