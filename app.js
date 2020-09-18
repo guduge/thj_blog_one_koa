@@ -6,6 +6,7 @@ const koaBody = require('koa-body');
 const staticCache = require('koa-static-cache')
 const cors = require('koa2-cors')
 const helmet = require("koa-helmet")
+const path = require('path');
 
 const config = require('./config')
 const publicRouter = require('./routes/public')
@@ -28,7 +29,7 @@ app.use(koaBody(
     {
         multipart:true,
         formidable:{
-            maxFileSize: 1000*1024*1024*1024 //大小限制
+            maxFileSize: 30*1024*1024 //大小限制
         }
     }
 ))
