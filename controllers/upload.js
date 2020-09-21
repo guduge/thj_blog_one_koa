@@ -22,22 +22,8 @@ upload.upload = async (ctx, next) => {
         return next()
     }
     let filePaths = await upload.uploadSaveLocal(files);
-    console.log("filePaths--------",filePaths);
-    var resPics = []
-    for (let file of filePaths) {
-        var fileName = file.fileName
-        var localFile = file.filePath
-        try {
-            var result = await client.put(fileName, localFile)
-            console.log("alioss------",result)
-            resPics.push({"aliossUrl":result.url || "","localUrl": ("upload/" + fileName)})
-        }
-        catch (e) {
-            console.log(e)
-        }
-    }
-    if (resPics.length > 0) {
-        ctx.result = resPics
+    if (filePaths.length > 0) {
+        ctx.result = filePaths
         ctx.msg = '成功'
     } else {
         ctx.result = ""
@@ -45,8 +31,7 @@ upload.upload = async (ctx, next) => {
     }
     return next()
 }
-upload.uploadSaveLocal = async (files)=> {
-
+upload.uploadSaveLocal = async (files) => {
     var paths = [];
     console.log(files);
     if (Array.isArray(files)) {
@@ -61,7 +46,10 @@ upload.uploadSaveLocal = async (files)=> {
             const upStream = fs.createWriteStream(filePath);
             // 可读流通过管道写入可写流
             reader.pipe(upStream);
-            paths.push({"filePath":filePath,"fileName":file.name});
+            /// 上传至阿里云
+            let result = await client.putStream(file.name, reader);
+            ///
+            paths.push({ "aliossUrl": result.url || "", "localUrl": ("upload/" + file.name) });
         }
     } else {
         let file = files
@@ -70,12 +58,14 @@ upload.uploadSaveLocal = async (files)=> {
         // 获取上传文件扩展名
         let dir = path.resolve(__dirname, '..')
         let filePath = path.join(dir, 'public/upload/') + file.name;
-        console.log("filePath--singal---", filePath);
         // 创建可写流
         const upStream = fs.createWriteStream(filePath);
         // 可读流通过管道写入可写流
         reader.pipe(upStream);
-        paths.push({"filePath":filePath,"fileName":file.name});
+        ///上传至阿里云
+        let result = await client.putStream(file.name, reader);
+        paths.push({ "aliossUrl": result.url || "", "localUrl": ("upload/" + file.name) });
+
     }
     return paths
 }
