@@ -3,7 +3,9 @@
 const Koa = require('koa')
 // const bodyParser = require('koa-bodyparser')()
 const koaBody = require('koa-body');
-const staticCache = require('koa-static-cache')
+const serve = require('koa-static');
+
+// const staticCache = require('koa-static-cache')
 const cors = require('koa2-cors')
 const helmet = require("koa-helmet")
 const path = require('path');
@@ -33,7 +35,7 @@ app.use(koaBody(
         }
     }
 ))
-app.use(staticCache(config.publicDir))
+app.use(serve(config.publicDir))
 
 // Helmet
 app.use(helmet())

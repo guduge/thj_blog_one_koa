@@ -7,6 +7,7 @@ const client = new OSS({
     accessKeyId: 'LTAI4GC4MGQPFN1DpLEiaqYj',
     accessKeySecret: 'C51EOC3hRYv9AJ5NpLhJE2TaWzDIlw',
     bucket: 'tianhaojiebucket1',
+    timeout: '60000'
 });
 const { InvalidQueryError } = require('../lib/error')
 const fs = require('fs')
