@@ -1,7 +1,7 @@
 'use strict'
 
 module.exports = {
-  name: "productItem",
+  name: "product",
   schema: {
     title: String, // 标题
     picUrl: String, // 图片链接

@@ -1,4 +1,4 @@
-const ProductItem = require('../models/index').getModel('productItem')
+const Product = require('../models/index').getModel('product')
 
 const user = {
     /**
@@ -7,18 +7,18 @@ const user = {
      * @params: { Object } userData
      * @return: { Object | null }
      */
-    async getProductList (product) {
-        let result = await ProductItem.findOne(product)
+    async getProductList () {
+        let result = await Product.find()
         console.log(result)
         return result
     },
     async getProductItem (product) {
-        let result = await ProductItem.findOne(product)
+        let result = await Product.findOne(product)
         console.log(result)
         return result
     },
-    async addProductItem (product) {
-        let result = await ProductItem.create(product)
+    async addProductItem(product) {
+        let result = await Product.create(product)
         console.log(result)
         return result
     }
