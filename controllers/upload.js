@@ -1,14 +1,9 @@
 'use strict'
 
 const config = require('../config')
+const aliconfig = require('../aliConfig')
 const OSS = require('ali-oss');
-const client = new OSS({
-    region: 'oss-cn-beijing',
-    accessKeyId: 'LTAI4GC4MGQPFN1DpLEiaqYj',
-    accessKeySecret: 'C51EOC3hRYv9AJ5NpLhJE2TaWzDIlw',
-    bucket: 'tianhaojiebucket1',
-    timeout: '60000'
-});
+const client = new OSS(aliconfig.aliConfig);
 const { InvalidQueryError } = require('../lib/error')
 const fs = require('fs')
 const path = require('path');
