@@ -9,5 +9,8 @@ router.post('/register', controllers.register.register)
 router.post('/upload', controllers.upload.upload)
 router.post('/addProductItem', controllers.product.addProductItem)
 router.get('/getProductList', controllers.product.getProductList)
+router.post('/createOrder', controllers.order.createOrder)
+router.get('/getOrderList', controllers.order.getOrderList)
+
 
 module.exports = router

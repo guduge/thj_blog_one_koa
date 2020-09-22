@@ -1,6 +1,6 @@
 const Product = require('../models/index').getModel('product')
 
-const user = {
+const product = {
     /**
      * @Description: ��¼
      * @date 2019/5/30
@@ -24,4 +24,4 @@ const user = {
     }
 }
 
-module.exports = user
+module.exports = product
